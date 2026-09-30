@@ -1,3 +1,14 @@
+# Dependências e build
 node_modules
 dist
+
+# Logs e caches
+*.log
+.vite
+
+# Sistema / editor
 .DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea

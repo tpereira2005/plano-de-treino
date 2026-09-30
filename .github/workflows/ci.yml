@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Verificar que o build é publicável
+        run: |
+          test -f dist/index.html
+          # Os recursos têm de usar caminhos relativos (./assets/...) para funcionar em qualquer domínio ou subpasta.
+          if grep -Eq '(src|href)="/assets/' dist/index.html; then
+            echo "::error::dist/index.html usa caminhos absolutos (/assets/...)."
+            exit 1
+          fi
+          for f in favicon.svg apple-touch-icon.png icon-192.png icon-512.png og-image.png site.webmanifest; do
+            test -f "dist/$f" || { echo "::error::Falta dist/$f"; exit 1; }
+          done
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+          retention-days: 7

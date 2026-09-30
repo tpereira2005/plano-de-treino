@@ -1,62 +1,122 @@
-# Plano de Treino — PLANO/7
+<div align="center">
 
-Site estático e responsivo para mostrar o meu plano de treino semanal
-(Upper A · Lower A · Upper B · Lower B · Aesthetics). É só para consulta: não guarda progresso nem cargas.
+<img src="public/og-image.png" alt="Plano de Treino — Upper / Lower + Aesthetics" width="100%" />
 
-**Site:** https://plano-de-treino.tomaspereira.chatgpt.site
+# Plano de Treino
 
-Construído com **Vite + JavaScript (sem framework)**. As fontes são empacotadas localmente (Fontsource), por isso não há pedidos a CDNs externos.
+**O meu plano de treino semanal, num site rápido e bonito para mostrar aos amigos.**
 
-## Requisitos
+[![Ver o site](https://img.shields.io/badge/ver%20o%20site-online-d6ff3d?style=for-the-badge&labelColor=0b0c0e)](https://plano-de-treino.tomaspereira.chatgpt.site)
 
-- Node.js 18+ (testado com Node 24) e npm
+[![CI](https://github.com/tpereira2005/plano-de-treino/actions/workflows/ci.yml/badge.svg)](https://github.com/tpereira2005/plano-de-treino/actions/workflows/ci.yml)
+[![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-b794ff)](LICENSE)
+[![Vite](https://img.shields.io/badge/Vite-8-ff7a2f?logo=vite&logoColor=white)](https://vite.dev)
+![Sem framework](https://img.shields.io/badge/JavaScript-sem%20framework-f7df1e?logo=javascript&logoColor=black)
 
-## Comandos
+</div>
+
+---
+
+## Sobre
+
+Divisão **Upper / Lower** com um dia extra de braços e ombros: **5 treinos, 2 dias de descanso, 117 séries por semana.**
+
+| Dia | Treino | Foco |
+| --- | --- | --- |
+| Segunda | **Upper A** | Peito · Costas · Ombros · Braços |
+| Terça | **Lower A** | Quadríceps · Posterior · Gémeos · Core |
+| Quarta | Descanso | — |
+| Quinta | **Upper B** | Ombros · Costas · Peito · Braços |
+| Sexta | **Lower B** | Pernas · Glúteos · Posterior · Core |
+| Sábado | **Aesthetics** | Ombros · Bíceps · Tríceps |
+| Domingo | Descanso | — |
+
+O site é só para consulta: não tem contas, não guarda progresso e não depende de nenhum servidor.
+
+## Capturas
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/iphone-hoje.png" width="240" alt="Treino de hoje no iPhone" /><br /><sub>Treino de hoje</sub></td>
+    <td align="center"><img src="docs/screenshots/iphone-semana.png" width="240" alt="A semana no iPhone" /><br /><sub>A semana</sub></td>
+    <td align="center"><img src="docs/screenshots/iphone-treino.png" width="240" alt="Exercícios de um treino no iPhone" /><br /><sub>Exercícios de cada dia</sub></td>
+    <td align="center"><img src="docs/screenshots/iphone-claro.png" width="240" alt="Tema claro no iPhone" /><br /><sub>Tema claro</sub></td>
+  </tr>
+</table>
+
+<img src="docs/screenshots/desktop.png" alt="Versão de computador" width="100%" />
+
+## Funcionalidades
+
+- **Hoje** — o treino do dia em destaque (ou o próximo, se for dia de descanso) e um anel clicável com a semana.
+- **A semana** — treinos, descanso, séries, exercícios diferentes, horas por treino e por semana, e os 7 dias.
+- **Os treinos** — cada exercício com equipamento, músculos, séries × repetições e pausa.
+- **Volume semanal** — séries por grupo muscular, por tipo de sessão.
+- **Exercícios** — os 28 exercícios do plano e os dias em que aparecem.
+- **Links diretos** para cada dia (`#/segunda`, `#/terca`, …) e botão de partilha nativo do iPhone.
+- **Feito para iPhone** — zonas seguras do notch, alvos de toque grandes, ícone para o ecrã principal, tema claro/escuro.
+- **Pré-visualização ao partilhar** — imagem própria no WhatsApp, iMessage e redes sociais.
+- **Leve e sem dependências externas** — fontes incluídas no build, nenhum pedido a CDNs, ~6 kB de JavaScript (gzip).
+
+## Começar
+
+Requer **Node.js 20.19+ ou 22.12+** (há um `.nvmrc` com a versão 22).
 
 ```bash
-npm install        # instalar dependências
-npm run dev        # servidor de desenvolvimento (http://localhost:5173)
-npm run build      # gera dist/ pronto a publicar
-npm run preview    # serve dist/ localmente para verificação
+npm install
 ```
 
-## Publicação
+```bash
+npm run dev
+```
 
-- Publica **o conteúdo da pasta `dist/`** (`index.html`, ícones, `site.webmanifest` e `assets/`).
-- Todos os caminhos são relativos (`base: './'` no `vite.config.js`): funciona na raiz de um domínio ou numa subpasta.
-- Cada dia tem um link próprio por hash (`#/segunda`, `#/sabado`…), por isso **não é preciso configurar rewrites** no servidor.
-- Não existem chaves, segredos, variáveis de ambiente nem backend.
+| Comando | O que faz |
+| --- | --- |
+| `npm run dev` | Servidor de desenvolvimento em `http://localhost:5173` |
+| `npm run build` | Gera a versão final em `dist/` |
+| `npm run preview` | Serve `dist/` localmente para verificar antes de publicar |
+
+## Alterar o plano
+
+Todo o plano está num só ficheiro: [`src/data/plan.js`](src/data/plan.js). O resto do site (semana, contagens, volume, biblioteca) é calculado a partir dele.
+
+```js
+ex('Hack Squat', 'máquina', 3, 8, 2),
+//  nome          equipamento  séries  reps  pausa (min)
+```
+
+Um exercício novo precisa também de uma entrada em `MUSCLES`, no mesmo ficheiro, para contar no gráfico de volume.
+
+## Publicar
+
+1. `npm run build`
+2. Publica **o conteúdo da pasta `dist/`** em qualquer alojamento estático.
+
+- Os caminhos são relativos (`base: './'`), por isso funciona na raiz de um domínio ou numa subpasta.
+- A navegação usa `#/dia`, por isso não é preciso configurar rewrites.
+- Não há chaves, segredos, variáveis de ambiente nem backend.
+- Se o domínio mudar, atualiza os URLs absolutos das meta tags `og:` em [`index.html`](index.html), que a pré-visualização de links exige.
 
 ## Estrutura
 
 ```
-index.html            estrutura da página
-public/               ícones (favicon.svg, apple-touch-icon.png, icon-192/512.png) e site.webmanifest
-src/data/plan.js      ← o plano de treino (editar aqui para mudar exercícios, séries ou pausas)
-src/lib/store.js      guarda só a preferência de tema claro/escuro no browser
-src/main.js           interface
-src/styles.css        estilos (tema claro/escuro, responsivo)
+├── index.html              estrutura da página e meta tags
+├── public/                 ícones, imagem de partilha e site.webmanifest
+├── src/
+│   ├── data/plan.js        o plano de treino (fonte única)
+│   ├── lib/store.js        guarda a preferência de tema no browser
+│   ├── main.js             interface
+│   └── styles.css          estilos (tema claro/escuro, responsivo)
+├── docs/screenshots/       capturas usadas neste README
+└── .github/                CI (build a cada push) e Dependabot
 ```
-
-## O que o site mostra
-
-- **Hoje**: o treino do dia atual em destaque (ou o próximo treino, se for dia de descanso) e um anel com a semana; cada dia do anel é clicável.
-- **A semana**: números gerais (treinos, descanso, séries, exercícios diferentes, horas por treino e por semana) e os 7 dias — lista vertical no telemóvel, grelha no tablet e no computador.
-- **Os treinos**: separadores por dia com a lista de exercícios, equipamento, músculos, séries × repetições e pausa.
-- **Volume semanal**: séries por grupo muscular, repartidas por tipo de sessão.
-- **Exercícios**: todos os exercícios do plano e os dias em que aparecem.
-- Botão **Partilhar** no topo (menu de partilha do iPhone ou copiar o link) e tema claro/escuro.
-
-## iPhone
-
-- Pensado primeiro para iPhone: verificado em larguras de 320 px (iPhone SE) a 390 px (iPhone 15) sem deslocamento horizontal (emulação de ecrã no browser; convém confirmar num iPhone real depois de publicar).
-- Respeita as zonas seguras do notch/Dynamic Island (`viewport-fit=cover` + `env(safe-area-inset-*)`).
-- Sem efeitos de hover "presos" depois de tocar; alvos de toque com pelo menos ~44 px nos botões do topo.
-- "Adicionar ao ecrã principal" no Safari usa `apple-touch-icon.png` e abre em ecrã inteiro com o nome "Treino".
-- A cor da barra do Safari acompanha o tema claro/escuro.
 
 ## Notas
 
-- O "dia de hoje" é calculado no browser de quem visita, com o relógio do dispositivo dessa pessoa.
-- A duração de cada treino é uma estimativa (~45 s por série mais a pausa indicada).
-- Copiar o link exige HTTPS (normal em qualquer alojamento atual). Em HTTP o site pede para copiar o link da barra de endereço.
+- O "dia de hoje" usa o relógio do dispositivo de quem visita.
+- A duração de cada treino é uma estimativa: cerca de 45 s por série mais a pausa indicada.
+- Copiar o link exige HTTPS; o iPhone usa o menu de partilha do sistema.
+
+## Licença
+
+[MIT](LICENSE) © 2026 Tomás Pereira

@@ -294,8 +294,8 @@ svg {
   position: sticky;
   top: 0;
   z-index: 40;
-  backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
   background: var(--bg);
   background: color-mix(in srgb, var(--bg) 80%, transparent);
   border-bottom: 1px solid var(--line);
