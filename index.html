@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Plano de Treino</title>
+    <meta name="description" content="O meu plano de treino semanal: Upper / Lower + Aesthetics — dias, exercícios, séries e pausas." />
+    <meta property="og:title" content="Plano de Treino" />
+    <meta property="og:description" content="Upper / Lower + Aesthetics — 5 treinos por semana. Vê os dias, os exercícios, as séries e as pausas." />
+    <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f3ef" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Treino" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <script>
+      // Aplica o tema guardado antes do primeiro render (evita "flash").
+      try {
+        var t = JSON.parse(localStorage.getItem('plano-treino:pref:theme'));
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#treino">Saltar para os treinos</a>
+
+    <header class="topbar">
+      <div class="wrap topbar__inner">
+        <a class="brand" href="#" data-scroll="top" aria-label="Início">
+          <svg class="brand__mark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><radialGradient id="brand-bg" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#1f232a"/><stop offset="1" stop-color="#0b0c0e"/></radialGradient></defs><rect width="512" height="512" rx="116" fill="url(#brand-bg)"/><g fill="none" stroke-width="54" stroke-linecap="butt"><path d="M266.26 88.31 A168 168 0 0 1 380.71 143.43" stroke="#d6ff3d"/><path d="M393.50 159.47 A168 168 0 0 1 421.76 283.31" stroke="#ff7a2f"/><path d="M417.20 303.31 A168 168 0 0 1 338.00 402.63" stroke="#3a404a"/><path d="M319.52 411.53 A168 168 0 0 1 192.48 411.53" stroke="#d6ff3d"/><path d="M174.00 402.63 A168 168 0 0 1 94.80 303.31" stroke="#ff7a2f"/><path d="M90.24 283.31 A168 168 0 0 1 118.50 159.47" stroke="#b794ff"/><path d="M131.29 143.43 A168 168 0 0 1 245.74 88.31" stroke="#3a404a"/></g><g fill="#f4f5f7"><rect x="152" y="246" width="208" height="20" rx="6"/><rect x="168" y="212" width="24" height="88" rx="8"/><rect x="320" y="212" width="24" height="88" rx="8"/><rect x="198" y="190" width="30" height="132" rx="10"/><rect x="284" y="190" width="30" height="132" rx="10"/></g></svg>
+          <span class="brand__text">PLANO<span>/</span>7</span>
+        </a>
+        <nav class="nav" aria-label="Secções">
+          <a href="#semana" data-scroll="semana">Semana</a>
+          <a href="#treino" data-scroll="treino">Treinos</a>
+          <a href="#volume" data-scroll="volume">Volume</a>
+          <a href="#exercicios" data-scroll="exercicios">Exercícios</a>
+        </nav>
+        <div class="topbar__actions">
+          <button class="icon-btn" id="share-btn" type="button" aria-label="Partilhar plano" title="Partilhar plano"></button>
+          <button class="icon-btn" id="theme-btn" type="button" aria-label="Alternar tema" title="Alternar tema"></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero wrap" id="hero" aria-label="Hoje"></section>
+
+      <section class="section wrap" id="semana" aria-labelledby="semana-h">
+        <div class="section__head">
+          <p class="eyebrow">01 — Visão geral</p>
+          <h2 id="semana-h">A semana</h2>
+          <p class="section__lede">Divisão Upper / Lower com um dia extra de braços e ombros.</p>
+        </div>
+        <dl class="facts" id="facts"></dl>
+        <ol class="week" id="week"></ol>
+      </section>
+
+      <section class="section wrap" id="treino" aria-labelledby="treino-h">
+        <div class="section__head">
+          <p class="eyebrow">02 — Sessões</p>
+          <h2 id="treino-h">Os treinos</h2>
+        </div>
+        <div class="daytabs" id="daytabs" role="tablist" aria-label="Escolher dia"></div>
+        <div id="day" role="tabpanel" aria-live="polite"></div>
+      </section>
+
+      <section class="section wrap" id="volume" aria-labelledby="volume-h">
+        <div class="section__head">
+          <p class="eyebrow">03 — Distribuição</p>
+          <h2 id="volume-h">Volume semanal</h2>
+          <p class="section__lede">Séries por grupo muscular principal, somadas ao longo da semana. Exercícios compostos contam para cada músculo principal.</p>
+        </div>
+        <div class="volume" id="volume-chart"></div>
+      </section>
+
+      <section class="section wrap" id="exercicios" aria-labelledby="ex-h">
+        <div class="section__head">
+          <p class="eyebrow">04 — Biblioteca</p>
+          <h2 id="ex-h">Exercícios</h2>
+          <p class="section__lede">Todos os exercícios do plano e os dias em que aparecem. Toca num dia para ver esse treino.</p>
+        </div>
+        <div class="library" id="library"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

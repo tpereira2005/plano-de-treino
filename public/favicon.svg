@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#1f232a"/>
+      <stop offset="1" stop-color="#0b0c0e"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <g fill="none" stroke-width="54" stroke-linecap="butt"><path d="M266.26 88.31 A168 168 0 0 1 380.71 143.43" stroke="#d6ff3d"/><path d="M393.50 159.47 A168 168 0 0 1 421.76 283.31" stroke="#ff7a2f"/><path d="M417.20 303.31 A168 168 0 0 1 338.00 402.63" stroke="#3a404a"/><path d="M319.52 411.53 A168 168 0 0 1 192.48 411.53" stroke="#d6ff3d"/><path d="M174.00 402.63 A168 168 0 0 1 94.80 303.31" stroke="#ff7a2f"/><path d="M90.24 283.31 A168 168 0 0 1 118.50 159.47" stroke="#b794ff"/><path d="M131.29 143.43 A168 168 0 0 1 245.74 88.31" stroke="#3a404a"/></g>
+  
+  <g fill="#f4f5f7">
+    <rect x="152" y="246" width="208" height="20" rx="6"/>
+    <rect x="168" y="212" width="24" height="88" rx="8"/>
+    <rect x="320" y="212" width="24" height="88" rx="8"/>
+    <rect x="198" y="190" width="30" height="132" rx="10"/>
+    <rect x="284" y="190" width="30" height="132" rx="10"/>
+  </g>
+</svg>
