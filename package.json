@@ -1,20 +1,41 @@
 {
   "name": "plano-de-treino",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
-  "description": "Plano de treino semanal — site estático e responsivo.",
+  "description": "O meu plano de treino semanal (Upper / Lower + Aesthetics) — site estático e responsivo.",
+  "author": "Tomás Pereira (https://github.com/tpereira2005)",
+  "license": "MIT",
+  "homepage": "https://plano-de-treino.tomaspereira.chatgpt.site",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpereira2005/plano-de-treino.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tpereira2005/plano-de-treino/issues"
+  },
+  "keywords": [
+    "treino",
+    "ginasio",
+    "workout",
+    "upper-lower",
+    "vite",
+    "static-site"
+  ],
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.1.0",
-    "@fontsource/anton": "^5.1.0",
-    "@fontsource/jetbrains-mono": "^5.1.0"
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0"
   },
   "devDependencies": {
-    "vite": "^6.0.0"
+    "vite": "^8.3.1"
   }
 }
